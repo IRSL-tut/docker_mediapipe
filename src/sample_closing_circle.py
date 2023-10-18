@@ -17,7 +17,7 @@ class MPHand():
         min_hand_presence_confidence:   (range:0.0~1.0, default:0.5),   手のランドマーク検出モデルにおける手の存在スコアの最小信頼スコア
         min_tracking_confidence:        (range:0.0~1.0, default:0.5),   ハンドトラッキングが成功したとみなされるための最小信頼スコア
         '''
-        model_path = os.path.dirname(os.path.abspath(__file__)) + '/task/gesture_recognizer.task'   #'./task/gesture_recognizer.task'
+        model_path = os.path.dirname(os.path.abspath(__file__)) + '/mppack/task/gesture_recognizer.task'   #'./task/gesture_recognizer.task'
         base_options = python.BaseOptions(model_asset_path=model_path)
         VisionRunningMode = vision.RunningMode
         options = vision.GestureRecognizerOptions(
@@ -154,9 +154,7 @@ def main():
             hands.set_image(img)
             if hands.get_results() is None:
                 continue
-            img = hands.get_image(bone=True, point=False, box=True, label=False, gesture=True)
-
-            handedness = hands.get_handedness()
+            img = hands.get_image(bone=True, box=True, gesture=True)
 
             size = (1280, 960)
             img = cv2.resize(img, size)     # リサイズ

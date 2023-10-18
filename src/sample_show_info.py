@@ -6,7 +6,7 @@ import numpy as np
 from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
 
-model_path = os.path.dirname(os.path.abspath(__file__)) + '/task/gesture_recognizer.task'
+model_path = os.path.dirname(os.path.abspath(__file__)) + '/mppack/task/gesture_recognizer.task'
 base_options = python.BaseOptions(model_asset_path=model_path)
 VisionRunningMode = vision.RunningMode
 options = vision.GestureRecognizerOptions(base_options=base_options,
