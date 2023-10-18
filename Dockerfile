@@ -41,6 +41,7 @@ RUN pip install --upgrade pip
 RUN pip install --upgrade setuptools
 RUN python3 -m pip install --upgrade pip
 RUN pip install --upgrade --user mediapipe
+RUN apt-get update -qq && apt-get install -y python3-tk
 
 # web camera
 RUN apt-get update -qq && apt-get install -y v4l-utils qv4l2
