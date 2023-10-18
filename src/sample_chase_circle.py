@@ -7,7 +7,7 @@ import numpy as np
 from mppack import mp_pose
 
 """
-リズムゲームサンプル
+ゲームサンプル
 """
 
 def main():
