@@ -118,8 +118,6 @@ def main():
 
             cv2.imshow('img', img)
 
-            # time_frame = time.time()
-
             key = cv2.waitKey(10) & 0xFF
             if key == ord('q') or key == ord('Q') or key == 0x1b:
                 break
