@@ -1,6 +1,7 @@
 #OpenCVとMediaPipeをインポート
 import cv2
 import mediapipe as mp
+
 #MediaPipeと顔検出と描画のユーティリティを宣言
 mp_face_detection = mp.solutions.face_detection
 mp_drawing = mp.solutions.drawing_utils

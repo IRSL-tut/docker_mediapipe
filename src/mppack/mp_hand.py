@@ -1,12 +1,13 @@
 import colorsys
 import os
+import time
 
 import cv2
 import mediapipe as mp
 import numpy as np
 from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
-import time
+
 
 class MPHand():
     def __init__(self, max_num_hands=1, min_detection_confidence=0.5, min_hand_presence_confidence=0.5, min_tracking_confidence=0.5):

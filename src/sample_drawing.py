@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+
 from mppack import mp_hand
 
 """
@@ -35,7 +36,7 @@ def main():
 
             # モデルからデータを取得
             handedness = hands.get_handedness()         # 手の左右(0: 右手, 1:左手)
-            landmarks = hands.get_landmarks()           # 手のランドマーク(array[個数, 31点, 3D座標])
+            landmarks = hands.get_landmarks()           # 手のランドマーク(array[個数, 31点, 2D座標])
             gestures = hands.get_gestures()             # 手のジェスチャー({"None", "Closed_Fist", "Open_Palm", "Pointing_Up", "Thumb_Down", "Thumb_Up", "Victory", "ILoveYou"})
             duration = hands.get_gestures_duration()    # ジェスチャーを認識し続けた時間(float)
 
