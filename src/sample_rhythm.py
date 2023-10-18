@@ -52,8 +52,8 @@ def main():
                 timer = diff
 
             if landmarks.shape[0] == 0:
-                m19 = (-100, -100)
-                m20 = (-100, -100)
+                lm19 = (-100, -100)
+                lm20 = (-100, -100)
             else:
                 lm19 = (int(landmarks[0, 19, 0]*size[0]), int(landmarks[0, 19, 1]*size[1]))
                 lm20 = (int(landmarks[0, 20, 0]*size[0]), int(landmarks[0, 20, 1]*size[1]))
