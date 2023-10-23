@@ -1,5 +1,6 @@
 #!/bin/bash
 
+#iname=${DOCKER_IMAGE:-"docker_mediapipe"} ##
 iname=${DOCKER_IMAGE:-"docker_mediapipe"} ##
 cname=${DOCKER_CONTAINER:-"docker_mediapipe"} ## name of container (should be same as in exec.sh)
 

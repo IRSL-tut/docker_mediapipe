@@ -1,0 +1,12 @@
+# ARG BASE_IMAGE=repo.irsl.eiiris.tut.ac.jp/irsl_system:noetic
+ARG BASE_IMAGE=irslrepo/irsl_system:noetic
+FROM ${BASE_IMAGE}
+
+RUN python3 -m pip install mediapipe
+
+RUN apt update -q -qq && \
+    apt install -q -qq -y python3-tk v4l-utils qv4l2 && \
+    apt clean && \
+    rm -rf /var/lib/apt/lists/
+
+# COPY src /IRSL_recognition

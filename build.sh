@@ -8,4 +8,5 @@ fi
 
 DOCKER_BUILDKIT=1 $SUDO docker build \
     --force-rm=true \
+    -f Dockerfile.add_mediapipe \
     -t docker_mediapipe .
