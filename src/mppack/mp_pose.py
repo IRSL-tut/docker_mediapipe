@@ -1,3 +1,6 @@
+# mediapipe pose
+# https://developers.google.com/mediapipe/solutions/vision/pose_landmarker/python
+
 import colorsys
 import os
 import time
