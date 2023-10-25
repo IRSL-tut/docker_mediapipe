@@ -1,3 +1,6 @@
+# mediapipe pose
+# https://developers.google.com/mediapipe/solutions/vision/pose_landmarker/python
+
 import colorsys
 import os
 import time
@@ -10,7 +13,7 @@ from mediapipe.tasks.python import vision
 
 
 class MPPose():
-    def __init__(self, model='full', max_num_poses=1, min_detection_confidence=0.5, min_pose_presence_confidence=0.5, min_tracking_confidence=0.5):
+    def __init__(self, model='full', max_num_poses=1, min_detection_confidence=0.5, min_pose_presence_confidence=0.5, min_tracking_confidence=0.5, running_mode='LIVE_STREAM'):
         """MediaPipeを用いた手の検出クラス
 
         Args:
@@ -19,21 +22,43 @@ class MPPose():
             min_detection_confidence (float, optional): ポーズ検出モデルで成功したとみなされるポーズの検出の最小信頼スコア(0.0 ~ 1.0). Defaults to 0.5.
             min_pose_presence_confidence (float, optional): ポーズランドマーク検出モデルにおけるポーズ存在スコアの最小信頼スコア(0.0 ~ 1.0). Defaults to 0.5.
             min_tracking_confidence (float, optional): ポーズトラッキングが成功したとみなされるための最小信頼スコア(0.0 ~ 1.0). Defaults to 0.5.
+            running_mode (str, optional): タスクの実行モード({'IMAGE', 'VIDEO', 'LIVE_STREAM'}). Defaults to 'LIVE_STREAM'.
         """
 
         model_path = os.path.dirname(os.path.abspath(__file__)) + '/task/pose_landmarker_'+model+'.task'   #'./task/pose_landmarker_{model}.task'
         base_options = python.BaseOptions(model_asset_path=model_path)
         VisionRunningMode = vision.RunningMode
-        options = vision.PoseLandmarkerOptions(
-            base_options=base_options,
-            running_mode=VisionRunningMode.LIVE_STREAM,
-            result_callback=self.callback,
-            num_poses=max_num_poses,
-            min_pose_detection_confidence=min_detection_confidence,
-            min_pose_presence_confidence=min_pose_presence_confidence,
-            min_tracking_confidence=min_tracking_confidence,
-        )
+        if running_mode == 'IMAGE':
+            options = vision.PoseLandmarkerOptions(
+                base_options=base_options,
+                running_mode=VisionRunningMode.IMAGE,
+                num_poses=max_num_poses,
+                min_pose_detection_confidence=min_detection_confidence,
+            )
+        elif running_mode == 'VIDEO':
+            options = vision.PoseLandmarkerOptions(
+                base_options=base_options,
+                running_mode=VisionRunningMode.VIDEO,
+                num_poses=max_num_poses,
+                min_pose_detection_confidence=min_detection_confidence,
+                min_pose_presence_confidence=min_pose_presence_confidence,
+                min_tracking_confidence=min_tracking_confidence,
+            )
+        elif running_mode == 'LIVE_STREAM':
+            options = vision.PoseLandmarkerOptions(
+                base_options=base_options,
+                running_mode=VisionRunningMode.LIVE_STREAM,
+                result_callback=self.callback,
+                num_poses=max_num_poses,
+                min_pose_detection_confidence=min_detection_confidence,
+                min_pose_presence_confidence=min_pose_presence_confidence,
+                min_tracking_confidence=min_tracking_confidence,
+            )
+        else:
+            print(f'unknown running mode "{running_mode}"')
+            return
         self.landmarker = vision.PoseLandmarker.create_from_options(options)
+        self.running_mode = running_mode
         self.results = None
 
     def callback(self, result: vision.PoseLandmarkerResult, output_image: mp.Image, timestamp_ms: int):
@@ -43,8 +68,14 @@ class MPPose():
     def set_image(self, image):
         self.image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         mp_image = mp.Image(image_format=mp.ImageFormat.SRGB, data=self.image)
-        timestamp = int(time.time()*1000)
-        self.landmarker.detect_async(mp_image, timestamp)
+        if self.running_mode == 'IMAGE':
+            self.results = self.landmarker.detect(mp_image)
+        elif self.running_mode == 'VIDEO':
+            timestamp = int(time.time()*1000)
+            self.results = self.landmarker.detect_for_video(mp_image, timestamp)
+        elif self.running_mode == 'LIVE_STREAM':
+            timestamp = int(time.time()*1000)
+            self.landmarker.detect_async(mp_image, timestamp)
 
     # 結果を返す
     def get_results(self):
