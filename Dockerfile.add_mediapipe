@@ -4,9 +4,14 @@ FROM ${BASE_IMAGE}
 
 RUN python3 -m pip install mediapipe
 
+# RUN sed -i 's@archive.ubuntu.com@ftp.jaist.ac.jp/pub/Linux@g' /etc/apt/sources.list
+# RUN sed -i 's@ftp.jaist.ac.jp/pub/Linux@archive.ubuntu.com@g' /etc/apt/sources.list
+
 RUN apt update -q -qq && \
     apt install -q -qq -y python3-tk v4l-utils qv4l2 && \
     apt clean && \
     rm -rf /var/lib/apt/lists/
 
-# COPY src /IRSL_recognition
+COPY src/mppack /IRSL_PYTHONPATH/mppack
+
+ENV PYTHONPATH=$PYTHONPATH:/IRSL_PYTHONPATH
