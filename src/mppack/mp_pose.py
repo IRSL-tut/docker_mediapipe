@@ -14,7 +14,7 @@ from mediapipe.tasks.python import vision
 
 class MPPose():
     def __init__(self, model='full', max_num_poses=1, min_detection_confidence=0.5, min_pose_presence_confidence=0.5, min_tracking_confidence=0.5, running_mode='LIVE_STREAM'):
-        """MediaPipeを用いた手の検出クラス
+        """MediaPipeを用いたPoseの検出クラス
 
         Args:
             model (str,optional): 使用するタスク({'lite', 'full', 'heavy'}). Default to 'full'.
@@ -60,6 +60,7 @@ class MPPose():
         self.landmarker = vision.PoseLandmarker.create_from_options(options)
         self.running_mode = running_mode
         self.results = None
+        self.visual = VisualizePoseInfo()
 
     def callback(self, result: vision.PoseLandmarkerResult, output_image: mp.Image, timestamp_ms: int):
         self.results = result
@@ -93,7 +94,13 @@ class MPPose():
             multi_landmarks = np.empty(0)
         return multi_landmarks
 
-
+    def add_results_to_image(self, image, **kwargs):
+        """
+        kwargs: bone=False, point=False
+        """
+        return self.visual.get_image(image,
+                                     self.get_landmarks(),
+                                     **kwargs)
 
 class VisualizePoseInfo():
     def __init__(self):
@@ -102,14 +109,47 @@ class VisualizePoseInfo():
         self.width = None
 
         self.bone_link = [
-            [7,3,2,1,0,4,5,6,8],
-            [9,10],
-            [11,12,24,23,11],
-            [11,13,15,17,19,15,21],
-            [12,14,16,18,20,16,22],
-            [23,25,27,29,31,27],
-            [24,26,28,30,32,28],
+            [7,3,2,1,0,4,5,6,8], ## eyes
+            [9,10],              ## mouse
+            [11,12,24,23,11],    ## body
+            [11,13,15,17,19,15,21], ## left-arm
+            [12,14,16,18,20,16,22], ## right-arm
+            [23,25,27,29,31,27], ## left-leg
+            [24,26,28,30,32,28], ## right-leg
         ]
+#  0 - nose
+#  1 - left eye (inner)
+#  2 - left eye
+#  3 - left eye (outer)
+#  4 - right eye (inner)
+#  5 - right eye
+#  6 - right eye (outer)
+#  7 - left ear
+#  8 - right ear
+#  9 - mouth (left)
+# 10 - mouth (right)
+# 11 - left shoulder
+# 12 - right shoulder
+# 13 - left elbow
+# 14 - right elbow
+# 15 - left wrist
+# 16 - right wrist
+# 17 - left pinky
+# 18 - right pinky
+# 19 - left index
+# 20 - right index
+# 21 - left thumb
+# 22 - right thumb
+# 23 - left hip
+# 24 - right hip
+# 25 - left knee
+# 26 - right knee
+# 27 - left ankle
+# 28 - right ankle
+# 29 - left heel
+# 30 - right heel
+# 31 - left foot index
+# 32 - right foot index
 
         self.color = {
             'red'  : (0, 0, 255),
@@ -119,7 +159,7 @@ class VisualizePoseInfo():
 
     # 描画後の画像を返す
     def get_image(self, image, landmarks,
-                    bone=False, point=False):
+                  bone=False, point=False):
         self.draw_image = image
         self.height, self.width = self.draw_image.shape[0:2]
         if bone:

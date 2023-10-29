@@ -64,6 +64,8 @@ class MPHand():
         t = float(time.time())
         self.ges_time = [{g:{'recognize':t, 'duration':0} for g in self.ges_list} for _ in range(2)]
 
+        self.visual = VisualizeHandInfo()
+
     def callback(self, result: vision.GestureRecognizerResult, output_image: mp.Image, timestamp_ms: int):
         self.results = result
 
@@ -125,7 +127,16 @@ class MPHand():
                     gestures_duration.append(self.ges_time[index][g]['duration'])
         return gestures_duration
 
-
+    def add_results_to_image(self, image, **kwargs):
+        """
+        kwargs: bone=False, point=False, box=False, circle=False, box_palm=False
+        """
+        return self.visual.get_image(image,
+                                     self.get_handedness(),
+                                     self.get_landmarks(),
+                                     self.get_gestures(),
+                                     self.get_gestures_duration(),
+                                     **kwargs)
 
 class VisualizeHandInfo():
     def __init__(self):
@@ -134,13 +145,34 @@ class VisualizeHandInfo():
         self.width = None
 
         self.bone_link = [
-            [0,1,2,3,4],
-            [1,5,6,7,8],
-            [9,10,11,12],
-            [13,14,15,16],
-            [0,17,18,19,20],
-            [5,9,13,17],
+            [0,1,2,3,4],     ## THUMB
+            [1,5,6,7,8],     ## INDEX_F
+            [9,10,11,12],    ## MIDDLE_F
+            [13,14,15,16],   ## RING_F
+            [0,17,18,19,20], ## PINKEY
+            [5,9,13,17],     ## PALM
         ]
+#  0: WRIST
+#  1: THUMB_CMC
+#  2: THUMB_MCP
+#  3: THUMB_IP
+#  4: THUMB_TIP
+#  5: INDEX_FINGER_MCP
+#  6: INDEX_FINGER_PIP
+#  7: INDEX_FINGER_DIP
+#  8: INDEX_FINGER_TIP
+#  9: MIDDLE_FINGER_MCP
+# 10: MIDDLE_FINGER_PIP
+# 11: MIDDLE_FINGER_DIP
+# 12: MIDDLE_FINGER_TIP
+# 13: RING_FINGER_FINGER_MCP
+# 14: RING_FINGER_FINGER_PIP
+# 15: RING_FINGER_FINGER_DIP
+# 16: RING_FINGER_FINGER_TIP
+# 17: PINKY_MCP
+# 18: PINKY_PIP
+# 19: PINKY_DIP
+# 20: PINKY_TIP
 
         self.color = {
             'red'  : (0, 0, 255),
@@ -150,7 +182,7 @@ class VisualizeHandInfo():
 
     # 描画後の画像を返す
     def get_image(self, image, handedness, landmarks, gestures, duration,
-                    bone=False, point=False, box=False, circle=False, box_palm=False):
+                  bone=False, point=False, box=False, circle=False, box_palm=False):
         self.draw_image = image
         self.height, self.width = self.draw_image.shape[0:2]
         if bone:
