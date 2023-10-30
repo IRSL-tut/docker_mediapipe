@@ -127,10 +127,22 @@ class MPHand():
                     gestures_duration.append(self.ges_time[index][g]['duration'])
         return gestures_duration
 
-    def add_results_to_image(self, image, **kwargs):
+    def write_results(self, image, prefix):
+        lm = self.get_landmarks()
+        cv2.imwrite('{}.png'.format(prefix), image)
+        if lm.shape[0] == 1:
+            lm = lm[0]
+            np.savetxt('{}.out'.format(prefix), lm)
+        else:
+            for idx in len(lm.shape[0]):
+                np.savetxt('{}_{}.out'.format(prefix,idx), lm[idx])
+
+    def add_results_to_image(self, image, copy=False, **kwargs):
         """
         kwargs: bone=False, point=False, box=False, circle=False, box_palm=False
         """
+        if copy:
+            image = image.copy()
         return self.visual.get_image(image,
                                      self.get_handedness(),
                                      self.get_landmarks(),
