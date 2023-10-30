@@ -1,0 +1,11 @@
+<launch>
+  <arg name="width" default="1280"/>
+  <arg name="height" default="720"/>
+  <arg name="device" default="/dev/video0"/>
+  <node pkg="cv_camera" type="cv_camera_node" name="cv_camera">
+    <param name="~image_width"  value="$(arg width)"/>
+    <param name="~image_height" value="$(arg height)"/>
+    <param name="~device_path" value="$(arg device)"/>
+    <param name="~cv_cap_prop_fourcc" value="1196444237.0"/> <!-- MJPG -->
+  </node>
+</launch>
