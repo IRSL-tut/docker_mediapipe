@@ -1,5 +1,6 @@
 import cv2
 import numpy as np
+import time
 
 class CvCapture(object):
     def __init__(self, camID=0):
@@ -8,11 +9,15 @@ class CvCapture(object):
 
     def isOpened(self):
         return self.cap.isOpened()
-    
-    def capture(self, size=(1280, 960), flip=True, grab=True):
+
+    def capture(self, size=(1280, 960), flip=True, grab=True, delay=None):
+        if delay is not None:
+            time.sleep(delay)
+
         if self.cap.isOpened():
             if grab:
                 self.cap.grab()
+                success, img = self.cap.read()
             # カメラから画像取得
             success, img = self.cap.read()
             if not success:
