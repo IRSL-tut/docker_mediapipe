@@ -9,8 +9,10 @@ from mppack import camera_capture
 cap = camera_capture.CvCapture(0)
 
 img = cap.capture()
-img = cap.capture()
 cap.show(img)
+
+## 遅延キャプチャ
+img = cap.capture(delay=1.0); cap.show(img)
 
 ### 手の認識モデル生成
 hand_recog = mp_hand.MPHand(max_num_hands=1, running_mode='IMAGE')
@@ -28,3 +30,19 @@ pose_recog.set_image(img)
 # res = pose_recog.get_results()
 rimg = pose_recog.add_results_to_image(img, bone=True, point=True)
 cap.show(rimg)
+
+
+## 認識結果の確認
+res = hand_recog.get_results()
+
+hand_landmarks = res.hand_landmarks
+
+len(hand_landmarks) ## num of hands
+
+hand_landmarks0 = hand_landmarks[0]
+
+len(hand_landmarks0) ## num of landmark
+
+landmark = hand_landmarks0[0]
+
+print(landmark.x, landmark.y, landmark.z)

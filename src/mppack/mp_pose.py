@@ -87,7 +87,7 @@ class MPPose():
         if self.results.pose_landmarks:
             multi_landmarks = np.array([
                 [
-                    [lm.x, lm.y] for lm in lms
+                    [lm.x, lm.y, lm.z] for lm in lms
                 ] for lms in self.results.pose_landmarks
             ])
         else:
