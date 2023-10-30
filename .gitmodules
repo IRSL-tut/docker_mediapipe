@@ -1,0 +1,4 @@
+[submodule "irsl_docker"]
+	path = irsl_docker
+	url = https://github.com/IRSL-tut/irsl_docker_irsl_system.git
+	branch = main
