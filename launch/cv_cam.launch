@@ -1,6 +1,6 @@
 <launch>
-  <arg name="width" default="1280"/>
-  <arg name="height" default="720"/>
+  <arg name="width" default="800"/>
+  <arg name="height" default="600"/>
   <arg name="device" default="/dev/video0"/>
   <node pkg="cv_camera" type="cv_camera_node" name="cv_camera">
     <param name="~image_width"  value="$(arg width)"/>
