@@ -8,7 +8,7 @@ RUN python3 -m pip install mediapipe
 # RUN sed -i 's@ftp.jaist.ac.jp/pub/Linux@archive.ubuntu.com@g' /etc/apt/sources.list
 
 RUN apt update -q -qq && \
-    apt install -q -qq -y python3-tk v4l-utils qv4l2 && \
+    apt install -q -qq -y python3-tk v4l-utils qv4l2 ros-noetic-cv-camera ros-noetic-camera-calibration && \
     apt clean && \
     rm -rf /var/lib/apt/lists/
 
