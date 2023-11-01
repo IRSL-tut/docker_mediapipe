@@ -87,29 +87,51 @@ class MPHand():
         return self.results
 
     # 手の左右を返す
-    def get_handedness(self):
-        index = np.array([i[0].index for i in self.results.handedness])
+    def get_handedness(self, result_index=None):
+        if result_index is None:
+            index = np.array([i[0].index for i in self.results.handedness])
+        else:
+            index = self.results.handedness[result_index].index
         return index
 
     # landmarkを返す
-    def get_landmarks(self):
+    def get_landmarks(self, result_index=None):
         if self.results.handedness:
-            multi_landmarks = np.array([
-                [
-                    [lm.x, lm.y, lm.z] for lm in lms
-                ] for lms in self.results.hand_landmarks
-            ])
+            if result_index is None:
+                multi_landmarks = np.array([
+                    [
+                        [lm.x, lm.y, lm.z] for lm in lms
+                    ] for lms in self.results.hand_landmarks
+                ])
+            else:
+                multi_landmarks = np.array([ [lm.x, lm.y, lm.z] for lm in self.results.hand_landmarks[result_index] ])
         else:
             multi_landmarks = np.empty(0)
         return multi_landmarks
-
+    # world_landmarkを返す
+    def get_world_landmarks(self, result_index=None):
+        if self.results.handedness:
+            if result_index is None:
+                multi_landmarks = np.array([
+                    [
+                        [lm.x, lm.y, lm.z] for lm in lms
+                    ] for lms in self.results.hand_world_landmarks
+                ])
+            else:
+                multi_landmarks = np.array([ [lm.x, lm.y, lm.z] for lm in self.results.hand_world_landmarks[result_index] ])
+        else:
+            multi_landmarks = np.empty(0)
+        return multi_landmarks
     # gestureを返す
-    def get_gestures(self):
-        gestures = [ges[0].category_name for ges in self.results.gestures]
+    def get_gestures(self, result_index=None):
+        if result_index is None:
+            gestures = [ges[0].category_name for ges in self.results.gestures]
+        else:
+            gestures = self.results.gestures[result_index].category_name
         return gestures
 
     # gesture継続時間を返す
-    def get_gestures_duration(self):
+    def get_gestures_duration(self, result_index=None):
         gestures_duration = []
         for hand, ges in zip(self.results.handedness, self.results.gestures):
             index = hand[0].index
@@ -129,13 +151,17 @@ class MPHand():
 
     def write_results(self, image, prefix):
         lm = self.get_landmarks()
+        wlm = self.get_world_landmarks()
         cv2.imwrite('{}.png'.format(prefix), image)
         if lm.shape[0] == 1:
             lm = lm[0]
             np.savetxt('{}.out'.format(prefix), lm)
+            np.savetxt('{}_w.out'.format(prefix), wlm[0])
         else:
             for idx in len(lm.shape[0]):
                 np.savetxt('{}_{}.out'.format(prefix,idx), lm[idx])
+            for idx in len(wlm.shape[0]):
+                np.savetxt('{}_{}_ww.out'.format(prefix,idx), wlm[idx])
 
     def add_results_to_image(self, image, copy=False, **kwargs):
         """
