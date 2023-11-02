@@ -9,10 +9,14 @@ class CvCapture(object):
         self.zero_dist = np.array([0, 0, 0, 0, 0], dtype='float64')
         self.zero3 = np.array([0, 0, 0], dtype='float64')
         ##
-        self.cap = cv2.VideoCapture(camID)   # カメラのID指定
-        self.cap.set(cv2.CAP_PROP_BUFFERSIZE, buffersize)
-        self.cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G')) ## BGR3??
-        self.setSize(width=width, height=height)
+        if camID >= 0:
+            self.cap = cv2.VideoCapture(camID)   # カメラのID指定
+            self.cap.set(cv2.CAP_PROP_BUFFERSIZE, buffersize)
+            self.cap.set(cv2.CAP_PROP_FOURCC, cv2.VideoWriter_fourcc('M', 'J', 'P', 'G')) ## BGR3??
+            self.setSize(width=width, height=height)
+        else:
+            self.width=width
+            self.height=height
         ##
         self.mapxy = None
 
@@ -38,6 +42,10 @@ class CvCapture(object):
     def project_points(self, points):
         if self.camera_matrix is not None and self.distortion is not None:
             return cv2.projectPoints(points, self.zero3, self.zero3, self.camera_matrix, self.distortion)
+
+    def project_points_new(self, points):
+        if self.new_camera_matrix is not None:
+            return cv2.projectPoints(points, self.zero3, self.zero3, self.new_camera_matrix, self.zero_dist)
 
     def unproject_points(self, uv_list, depth=1.0, depth_list=None):
         cmat = self.new_camera_matrix

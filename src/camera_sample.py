@@ -8,19 +8,22 @@ from mppack import camera_capture
 
 cap = camera_capture.CvCapture(0)
 
-img = cap.capture(size=None)
+img = cap.capture()
 cap.show(img)
 
 ## 遅延キャプチャ
-img = cap.capture(delay=1.0, size=None); cap.show(img)
+img = cap.capture(delay=1.0); cap.show(img)
 
 ### 手の認識モデル生成
 hand_recog = mp_hand.MPHand(max_num_hands=1, running_mode='IMAGE')
 hand_recog.set_image(img)
+land = hand_recog.get_landmarks()
+
+hand_recog.set_image(img_und)
+land_und = hand_recog.get_landmarks()
 
 # res = hand_recog.get_results()
-rimg = hand_recog.add_results_to_image(img, bone=True, point=True, box=True, circle=True, box_palm=True, copy=True)
-cap.show(rimg)
+cap.show(hand_recog.add_results_to_image(img_und, bone=True, point=True, box=True, circle=True, box_palm=True, copy=True))
 
 ### 認識結果の保存
 hand_recog.write_results(img, 'hand000')

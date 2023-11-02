@@ -158,9 +158,9 @@ class MPHand():
             np.savetxt('{}.out'.format(prefix), lm)
             np.savetxt('{}_w.out'.format(prefix), wlm[0])
         else:
-            for idx in len(lm.shape[0]):
+            for idx in range(lm.shape[0]):
                 np.savetxt('{}_{}.out'.format(prefix,idx), lm[idx])
-            for idx in len(wlm.shape[0]):
+            for idx in range(wlm.shape[0]):
                 np.savetxt('{}_{}_ww.out'.format(prefix,idx), wlm[idx])
 
     def add_results_to_image(self, image, copy=False, **kwargs):
