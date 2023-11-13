@@ -1,0 +1,1074 @@
+format: ChoreonoidBody
+format_version: 2.0
+angle_unit: degree
+name: "HandModel"
+root_link: "Root"
+links: 
+  - 
+    name: "Root"
+    elements: 
+      - 
+        type: Transform
+        elements: 
+          - 
+            type: Transform
+            rotation: [ 0, 0.707106781187, 0.707106781187, 180 ]
+            translation: [ 0, 0, 0.0428 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.14, 0.49, 0.14 ]
+                    emissive: [ 0.06, 0.21, 0.06 ]
+                geometry: 
+                  type: Capsule
+                  radius: 0.007
+                  height: 0.0856
+          - 
+            type: Transform
+            rotation: [ 0, -0.13052619222, 0.991444861374, 180 ]
+            translation: [ 0, -0.0329863669678, 0.0767613296097 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.14, 0.49, 0.14 ]
+                    emissive: [ 0.06, 0.21, 0.06 ]
+                geometry: 
+                  type: Capsule
+                  radius: 0.007
+                  height: 0.0683
+          - 
+            type: Transform
+            translation: [ 0, -0.01815, 0 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.14, 0.49, 0.14 ]
+                    emissive: [ 0.06, 0.21, 0.06 ]
+                geometry: 
+                  type: Capsule
+                  radius: 0.007
+                  height: 0.0363
+          - 
+            type: Transform
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.49, 0.14, 0.14 ]
+                    emissive: [ 0.21, 0.06, 0.06 ]
+                geometry: 
+                  type: Sphere
+                  radius: 0.01
+    joint_name: Root
+    joint_type: free
+    mass: 0.0151112
+    center_of_mass: [ 0, -0.0138098, 0.0408392 ]
+    inertia: [ 
+      2.41724e-05, 0, 0, 
+      0, 1.84172e-05, 3.01819e-06, 
+      0, 3.01819e-06, 6.14294e-06 ]
+  - 
+    name: "thumb0"
+    elements: 
+      - 
+        type: Transform
+        rotation: [ -1, 0, 0, 45 ]
+        translation: [ -0, 0.0256679761571, -0.0256679761571 ]
+        elements: 
+          - 
+            type: Transform
+            rotation: [ 1, 0, 0, 45 ]
+            translation: [ 0, -0.0363, 0 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.49, 0.14, 0.14 ]
+                    emissive: [ 0.21, 0.06, 0.06 ]
+                geometry: 
+                  type: Cylinder
+                  radius: 0.008
+                  height: 0.018
+    parent: Root
+    translation: [ 0, -0.0363, 0 ]
+    rotation: [ 1, 0, 0, 45 ]
+    joint_name: thumb0
+    joint_type: revolute
+    joint_axis: [ 0, 1, 0 ]
+    joint_id: 0
+    joint_range: [ -15, 120 ]
+    mass: 0.00144765
+    center_of_mass: [ 0, 0, 0 ]
+    inertia: [ 
+      6.22488e-08, 0, 0, 
+      0, 4.63247e-08, 0, 
+      0, 0, 6.22488e-08 ]
+  - 
+    name: "thumb1"
+    elements: 
+      - 
+        type: Transform
+        rotation: [ -0, -0, 1, 90 ]
+        translation: [ -0.0363, 8.06021915878e-18, -0 ]
+        elements: 
+          - 
+            type: Transform
+            rotation: [ 0, 0, -1, 90 ]
+            translation: [ 0, -0.0363, 0 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.49, 0.14, 0.14 ]
+                    emissive: [ 0.21, 0.06, 0.06 ]
+                geometry: 
+                  type: Cylinder
+                  radius: 0.008
+                  height: 0.018
+          - 
+            type: Transform
+            rotation: [ -1, 0, 0, 45 ]
+            translation: [ 0, -0.0491693434176, 0.0128693434176 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.14, 0.49, 0.14 ]
+                    emissive: [ 0.06, 0.21, 0.06 ]
+                geometry: 
+                  type: Capsule
+                  radius: 0.007
+                  height: 0.0224
+    parent: thumb0
+    rotation: [ -0.357407, -0.357407, -0.862856, 98.4211 ]
+    joint_name: thumb1
+    joint_type: revolute
+    joint_axis: [ 0, 1, 0 ]
+    joint_id: 1
+    joint_range: [ -30, 60 ]
+    joint_displacement: 15
+    mass: 0.00340163
+    center_of_mass: [ 0.00739249, -1.64146e-18, 0.00739249 ]
+    inertia: [ 
+      2.45029e-07, 4.53717e-23, -1.37724e-07, 
+      4.53717e-23, 4.79696e-07, 7.25949e-23, 
+      -1.37724e-07, 7.30763e-23, 3.57896e-07 ]
+  - 
+    name: "thumb2"
+    elements: 
+      - 
+        type: Transform
+        rotation: [ -0, -0, 1, 90 ]
+        translation: [ -0.0620386868352, 1.37753557084e-17, -0.0257386868352 ]
+        elements: 
+          - 
+            type: Transform
+            rotation: [ 0, 0, -1, 90 ]
+            translation: [ 0, -0.0620386868352, 0.0257386868352 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.49, 0.14, 0.14 ]
+                    emissive: [ 0.21, 0.06, 0.06 ]
+                geometry: 
+                  type: Cylinder
+                  radius: 0.008
+                  height: 0.018
+          - 
+            type: Transform
+            rotation: [ -1, 0, 0, 45 ]
+            translation: [ 0, -0.0722210244843, 0.0359210244843 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.14, 0.49, 0.14 ]
+                    emissive: [ 0.06, 0.21, 0.06 ]
+                geometry: 
+                  type: Capsule
+                  radius: 0.007
+                  height: 0.0148
+    parent: thumb1
+    translation: [ 0.0257387, -6.06182e-18, 0.0257387 ]
+    rotation: [ 0.908319, 0.418277, 0, 6.49037e-15 ]
+    joint_name: thumb2
+    joint_type: revolute
+    joint_axis: [ 0, 1, 0 ]
+    joint_id: 2
+    joint_range: [ -15, 120 ]
+    mass: 0.00293366
+    center_of_mass: [ 0.00515776, -1.14525e-18, 0.00515776 ]
+    inertia: [ 
+      1.71868e-07, 2.0497e-23, -7.60275e-08, 
+      2.0497e-23, 2.68913e-07, 3.17311e-23, 
+      -7.60275e-08, 3.12628e-23, 2.08809e-07 ]
+  - 
+    name: "thumb3"
+    elements: 
+      - 
+        type: Transform
+        rotation: [ -0, -0, 1, 90 ]
+        translation: [ -0.0824033621334, 1.82972219894e-17, -0.0461033621334 ]
+        elements: 
+          - 
+            type: Transform
+            rotation: [ 0, 0, -1, 90 ]
+            translation: [ 0, -0.0824033621334, 0.0461033621334 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.49, 0.14, 0.14 ]
+                    emissive: [ 0.21, 0.06, 0.06 ]
+                geometry: 
+                  type: Cylinder
+                  radius: 0.008
+                  height: 0.018
+          - 
+            type: Transform
+            rotation: [ -1, 0, 0, 45 ]
+            translation: [ 0, -0.0906411561342, 0.0543411561342 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.14, 0.49, 0.14 ]
+                    emissive: [ 0.06, 0.21, 0.06 ]
+                geometry: 
+                  type: Capsule
+                  radius: 0.007
+                  height: 0.0093
+          - 
+            type: Transform
+            translation: [ 0, -0.098878950135, 0.062578950135 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.49, 0.14, 0.14 ]
+                    emissive: [ 0.21, 0.06, 0.06 ]
+                geometry: 
+                  type: Sphere
+                  radius: 0.01
+    parent: thumb2
+    translation: [ 0.0203647, -3.78289e-18, 0.0203647 ]
+    rotation: [ 0.948683, 0.316228, 0, 5.5832e-31 ]
+    joint_name: thumb3
+    joint_type: revolute
+    joint_axis: [ 0, 1, 0 ]
+    joint_id: 3
+    joint_range: [ -15, 120 ]
+    mass: 0.00427051
+    center_of_mass: [ 0.00867735, -1.92676e-18, 0.00867735 ]
+    inertia: [ 
+      3.6568e-07, 4.673e-23, -2.11117e-07, 
+      4.673e-23, 5.70411e-07, 5.79139e-23, 
+      -2.11117e-07, 5.45752e-23, 3.75219e-07 ]
+  - 
+    name: "index_finger_0"
+    elements: 
+      - 
+        type: Transform
+        rotation: [ -0, -0, 1, 90 ]
+        translation: [ -0.0659727339355, 1.46488896425e-17, -0.0679226592195 ]
+        elements: 
+          - 
+            type: Transform
+            rotation: [ 0, 0, -1, 90 ]
+            translation: [ 0, -0.0659727339355, 0.0679226592195 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.49, 0.14, 0.14 ]
+                    emissive: [ 0.21, 0.06, 0.06 ]
+                geometry: 
+                  type: Cylinder
+                  radius: 0.008
+                  height: 0.018
+    parent: Root
+    translation: [ 0, -0.0659727, 0.0679227 ]
+    rotation: [ 0, 0, -1, 90 ]
+    joint_name: index_finger_0
+    joint_type: revolute
+    joint_axis: [ 0, 1, 0 ]
+    joint_id: 4
+    joint_range: [ -30, 60 ]
+    joint_displacement: 15
+    mass: 0.00144765
+    center_of_mass: [ 0, 0, 0 ]
+    inertia: [ 
+      6.22488e-08, 0, 0, 
+      0, 4.63247e-08, 0, 
+      0, 0, 6.22488e-08 ]
+  - 
+    name: "index_finger_1"
+    elements: 
+      - 
+        type: Transform
+        translation: [ -0, 0.0659727339355, -0.0679226592195 ]
+        elements: 
+          - 
+            type: Transform
+            translation: [ 0, -0.0659727339355, 0.0679226592195 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.49, 0.14, 0.14 ]
+                    emissive: [ 0.21, 0.06, 0.06 ]
+                geometry: 
+                  type: Cylinder
+                  radius: 0.008
+                  height: 0.018
+          - 
+            type: Transform
+            rotation: [ -1, 0, 0, 90 ]
+            translation: [ 0, -0.0659727339355, 0.0855726592195 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.14, 0.49, 0.14 ]
+                    emissive: [ 0.06, 0.21, 0.06 ]
+                geometry: 
+                  type: Capsule
+                  radius: 0.007
+                  height: 0.0213
+    parent: index_finger_0
+    rotation: [ 0, 0, 1, 90 ]
+    joint_name: index_finger_1
+    joint_type: revolute
+    joint_axis: [ 0, 1, 0 ]
+    joint_id: 5
+    joint_range: [ -15, 120 ]
+    mass: 0.0033339
+    center_of_mass: [ 0, 0, 0.00998602 ]
+    inertia: [ 
+      4.59502e-07, 0, 0, 
+      0, 4.43578e-07, -2.19167e-23, 
+      0, -2.19167e-23, 1.05646e-07 ]
+  - 
+    name: "index_finger_2"
+    elements: 
+      - 
+        type: Transform
+        translation: [ -0, 0.0659727339355, -0.103222659219 ]
+        elements: 
+          - 
+            type: Transform
+            translation: [ 0, -0.0659727339355, 0.103222659219 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.49, 0.14, 0.14 ]
+                    emissive: [ 0.21, 0.06, 0.06 ]
+                geometry: 
+                  type: Cylinder
+                  radius: 0.008
+                  height: 0.018
+          - 
+            type: Transform
+            rotation: [ -1, 0, 0, 90 ]
+            translation: [ 0, -0.0659727339355, 0.113822659219 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.14, 0.49, 0.14 ]
+                    emissive: [ 0.06, 0.21, 0.06 ]
+                geometry: 
+                  type: Capsule
+                  radius: 0.007
+                  height: 0.0072
+    parent: index_finger_1
+    translation: [ 0, 0, 0.0353 ]
+    joint_name: index_finger_2
+    joint_type: revolute
+    joint_axis: [ 0, 1, 0 ]
+    joint_id: 6
+    joint_range: [ -15, 120 ]
+    mass: 0.00246569
+    center_of_mass: [ 0, 0, 0.00437657 ]
+    inertia: [ 
+      1.55466e-07, 0, 0, 
+      0, 1.39542e-07, -8.73177e-25, 
+      0, -8.73177e-25, 8.43748e-08 ]
+  - 
+    name: "index_finger_3"
+    elements: 
+      - 
+        type: Transform
+        translation: [ -0, 0.0659727339355, -0.124422659219 ]
+        elements: 
+          - 
+            type: Transform
+            translation: [ 0, -0.0659727339355, 0.124422659219 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.49, 0.14, 0.14 ]
+                    emissive: [ 0.21, 0.06, 0.06 ]
+                geometry: 
+                  type: Cylinder
+                  radius: 0.008
+                  height: 0.018
+          - 
+            type: Transform
+            rotation: [ -1, 0, 0, 90 ]
+            translation: [ 0, -0.0659727339355, 0.133422659219 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.14, 0.49, 0.14 ]
+                    emissive: [ 0.06, 0.21, 0.06 ]
+                geometry: 
+                  type: Capsule
+                  radius: 0.007
+                  height: 0.004
+          - 
+            type: Transform
+            translation: [ 0, -0.0659727339355, 0.142422659219 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.49, 0.14, 0.14 ]
+                    emissive: [ 0.21, 0.06, 0.06 ]
+                geometry: 
+                  type: Sphere
+                  radius: 0.01
+    parent: index_finger_2
+    translation: [ 0, 0, 0.0212 ]
+    joint_name: index_finger_3
+    joint_type: revolute
+    joint_axis: [ 0, 1, 0 ]
+    joint_id: 7
+    joint_range: [ -15, 120 ]
+    mass: 0.00394416
+    center_of_mass: [ 0, 0, 0.00951997 ]
+    inertia: [ 
+      3.98088e-07, 0, 0, 
+      0, 3.82164e-07, 8.65921e-26, 
+      0, 8.65921e-26, 1.46568e-07 ]
+  - 
+    name: "middle_finger_0"
+    elements: 
+      - 
+        type: Transform
+        rotation: [ -0, -0, 1, 90 ]
+        translation: [ -0.0452759178492, 1.00532732914e-17, -0.0786447352778 ]
+        elements: 
+          - 
+            type: Transform
+            rotation: [ 0, 0, -1, 90 ]
+            translation: [ 0, -0.0452759178492, 0.0786447352778 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.49, 0.14, 0.14 ]
+                    emissive: [ 0.21, 0.06, 0.06 ]
+                geometry: 
+                  type: Cylinder
+                  radius: 0.008
+                  height: 0.018
+    parent: Root
+    translation: [ 0, -0.0452759, 0.0786447 ]
+    rotation: [ 0, 0, -1, 90 ]
+    joint_name: middle_finger_0
+    joint_type: revolute
+    joint_axis: [ 0, 1, 0 ]
+    joint_id: 8
+    joint_range: [ -30, 60 ]
+    joint_displacement: 15
+    mass: 0.00144765
+    center_of_mass: [ 0, 0, 0 ]
+    inertia: [ 
+      6.22488e-08, 0, 0, 
+      0, 4.63247e-08, 0, 
+      0, 0, 6.22488e-08 ]
+  - 
+    name: "middle_finger_1"
+    elements: 
+      - 
+        type: Transform
+        translation: [ -0, 0.0452759178492, -0.0786447352778 ]
+        elements: 
+          - 
+            type: Transform
+            translation: [ 0, -0.0452759178492, 0.0786447352778 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.49, 0.14, 0.14 ]
+                    emissive: [ 0.21, 0.06, 0.06 ]
+                geometry: 
+                  type: Cylinder
+                  radius: 0.008
+                  height: 0.018
+          - 
+            type: Transform
+            rotation: [ -1, 0, 0, 90 ]
+            translation: [ 0, -0.0452759178492, 0.0993447352778 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.14, 0.49, 0.14 ]
+                    emissive: [ 0.06, 0.21, 0.06 ]
+                geometry: 
+                  type: Capsule
+                  radius: 0.007
+                  height: 0.0274
+    parent: middle_finger_0
+    rotation: [ 0, 0, 1, 90 ]
+    joint_name: middle_finger_1
+    joint_type: revolute
+    joint_axis: [ 0, 1, 0 ]
+    joint_id: 9
+    joint_range: [ -15, 120 ]
+    mass: 0.00370951
+    center_of_mass: [ 0, 0, 0.0126218 ]
+    inertia: [ 
+      6.85828e-07, 0, 0, 
+      0, 6.69904e-07, -4.27997e-23, 
+      0, -4.27997e-23, 1.14848e-07 ]
+  - 
+    name: "middle_finger_2"
+    elements: 
+      - 
+        type: Transform
+        translation: [ -0, 0.0452759178492, -0.120044735278 ]
+        elements: 
+          - 
+            type: Transform
+            translation: [ 0, -0.0452759178492, 0.120044735278 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.49, 0.14, 0.14 ]
+                    emissive: [ 0.21, 0.06, 0.06 ]
+                geometry: 
+                  type: Cylinder
+                  radius: 0.008
+                  height: 0.018
+          - 
+            type: Transform
+            rotation: [ -1, 0, 0, 90 ]
+            translation: [ 0, -0.0452759178492, 0.132194735278 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.14, 0.49, 0.14 ]
+                    emissive: [ 0.06, 0.21, 0.06 ]
+                geometry: 
+                  type: Capsule
+                  radius: 0.007
+                  height: 0.0103
+    parent: middle_finger_1
+    translation: [ 0, 0, 0.0414 ]
+    joint_name: middle_finger_2
+    joint_type: revolute
+    joint_axis: [ 0, 1, 0 ]
+    joint_id: 10
+    joint_range: [ -15, 120 ]
+    mass: 0.00265657
+    center_of_mass: [ 0, 0, 0.0055291 ]
+    inertia: [ 
+      1.99383e-07, 0, 0, 
+      0, 1.83458e-07, -2.90442e-24, 
+      0, -2.90442e-24, 8.90514e-08 ]
+  - 
+    name: "middle_finger_3"
+    elements: 
+      - 
+        type: Transform
+        translation: [ -0, 0.0452759178492, -0.144344735278 ]
+        elements: 
+          - 
+            type: Transform
+            translation: [ 0, -0.0452759178492, 0.144344735278 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.49, 0.14, 0.14 ]
+                    emissive: [ 0.21, 0.06, 0.06 ]
+                geometry: 
+                  type: Cylinder
+                  radius: 0.008
+                  height: 0.018
+          - 
+            type: Transform
+            rotation: [ -1, 0, 0, 90 ]
+            translation: [ 0, -0.0452759178492, 0.153894735278 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.14, 0.49, 0.14 ]
+                    emissive: [ 0.06, 0.21, 0.06 ]
+                geometry: 
+                  type: Capsule
+                  radius: 0.007
+                  height: 0.0051
+          - 
+            type: Transform
+            translation: [ 0, -0.0452759178492, 0.163444735278 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.49, 0.14, 0.14 ]
+                    emissive: [ 0.21, 0.06, 0.06 ]
+                geometry: 
+                  type: Sphere
+                  radius: 0.01
+    parent: middle_finger_2
+    translation: [ 0, 0, 0.0243 ]
+    joint_name: middle_finger_3
+    joint_type: revolute
+    joint_axis: [ 0, 1, 0 ]
+    joint_id: 11
+    joint_range: [ -15, 120 ]
+    mass: 0.0040119
+    center_of_mass: [ 0, 0, 0.0100924 ]
+    inertia: [ 
+      4.32458e-07, 0, 0, 
+      0, 4.16534e-07, -1.26733e-25, 
+      0, -1.26733e-25, 1.48227e-07 ]
+  - 
+    name: "ring_finger_0"
+    elements: 
+      - 
+        type: Transform
+        rotation: [ -0, -0, 1, 90 ]
+        translation: [ -0.0232850065374, 5.17031007726e-18, -0.0845371822046 ]
+        elements: 
+          - 
+            type: Transform
+            rotation: [ 0, 0, -1, 90 ]
+            translation: [ 0, -0.0232850065374, 0.0845371822046 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.49, 0.14, 0.14 ]
+                    emissive: [ 0.21, 0.06, 0.06 ]
+                geometry: 
+                  type: Cylinder
+                  radius: 0.008
+                  height: 0.018
+    parent: Root
+    translation: [ 0, -0.023285, 0.0845372 ]
+    rotation: [ 0, 0, -1, 90 ]
+    joint_name: ring_finger_0
+    joint_type: revolute
+    joint_axis: [ 0, 1, 0 ]
+    joint_id: 12
+    joint_range: [ -30, 60 ]
+    joint_displacement: 15
+    mass: 0.00144765
+    center_of_mass: [ 0, 0, 0 ]
+    inertia: [ 
+      6.22488e-08, 0, 0, 
+      0, 4.63247e-08, 0, 
+      0, 0, 6.22488e-08 ]
+  - 
+    name: "ring_finger_1"
+    elements: 
+      - 
+        type: Transform
+        translation: [ -0, 0.0232850065374, -0.0845371822046 ]
+        elements: 
+          - 
+            type: Transform
+            translation: [ 0, -0.0232850065374, 0.0845371822046 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.49, 0.14, 0.14 ]
+                    emissive: [ 0.21, 0.06, 0.06 ]
+                geometry: 
+                  type: Cylinder
+                  radius: 0.008
+                  height: 0.018
+          - 
+            type: Transform
+            rotation: [ -1, 0, 0, 90 ]
+            translation: [ 0, -0.0232850065374, 0.104087182205 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.14, 0.49, 0.14 ]
+                    emissive: [ 0.06, 0.21, 0.06 ]
+                geometry: 
+                  type: Capsule
+                  radius: 0.007
+                  height: 0.0251
+    parent: ring_finger_0
+    rotation: [ 0, 0, 1, 90 ]
+    joint_name: ring_finger_1
+    joint_type: revolute
+    joint_axis: [ 0, 1, 0 ]
+    joint_id: 13
+    joint_range: [ -15, 120 ]
+    mass: 0.00356789
+    center_of_mass: [ 0, 0, 0.0116177 ]
+    inertia: [ 
+      5.92903e-07, 0, 0, 
+      0, 5.76979e-07, -3.3912e-23, 
+      0, -3.3912e-23, 1.11379e-07 ]
+  - 
+    name: "ring_finger_2"
+    elements: 
+      - 
+        type: Transform
+        translation: [ -0, 0.0232850065374, -0.123637182205 ]
+        elements: 
+          - 
+            type: Transform
+            translation: [ 0, -0.0232850065374, 0.123637182205 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.49, 0.14, 0.14 ]
+                    emissive: [ 0.21, 0.06, 0.06 ]
+                geometry: 
+                  type: Cylinder
+                  radius: 0.008
+                  height: 0.018
+          - 
+            type: Transform
+            rotation: [ -1, 0, 0, 90 ]
+            translation: [ 0, -0.0232850065374, 0.135287182205 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.14, 0.49, 0.14 ]
+                    emissive: [ 0.06, 0.21, 0.06 ]
+                geometry: 
+                  type: Capsule
+                  radius: 0.007
+                  height: 0.0093
+    parent: ring_finger_1
+    translation: [ 0, 0, 0.0391 ]
+    joint_name: ring_finger_2
+    joint_type: revolute
+    joint_axis: [ 0, 1, 0 ]
+    joint_id: 14
+    joint_range: [ -15, 120 ]
+    mass: 0.002595
+    center_of_mass: [ 0, 0, 0.00515093 ]
+    inertia: [ 
+      1.83953e-07, 0, 0, 
+      0, 1.68028e-07, -2.11806e-24, 
+      0, -2.11806e-24, 8.75428e-08 ]
+  - 
+    name: "ring_finger_3"
+    elements: 
+      - 
+        type: Transform
+        translation: [ -0, 0.0232850065374, -0.146937182205 ]
+        elements: 
+          - 
+            type: Transform
+            translation: [ 0, -0.0232850065374, 0.146937182205 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.49, 0.14, 0.14 ]
+                    emissive: [ 0.21, 0.06, 0.06 ]
+                geometry: 
+                  type: Cylinder
+                  radius: 0.008
+                  height: 0.018
+          - 
+            type: Transform
+            rotation: [ -1, 0, 0, 90 ]
+            translation: [ 0, -0.0232850065374, 0.156887182205 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.14, 0.49, 0.14 ]
+                    emissive: [ 0.06, 0.21, 0.06 ]
+                geometry: 
+                  type: Capsule
+                  radius: 0.007
+                  height: 0.0059
+          - 
+            type: Transform
+            translation: [ 0, -0.0232850065374, 0.166837182205 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.49, 0.14, 0.14 ]
+                    emissive: [ 0.21, 0.06, 0.06 ]
+                geometry: 
+                  type: Sphere
+                  radius: 0.01
+    parent: ring_finger_2
+    translation: [ 0, 0, 0.0233 ]
+    joint_name: ring_finger_3
+    joint_type: revolute
+    joint_axis: [ 0, 1, 0 ]
+    joint_id: 15
+    joint_range: [ -15, 120 ]
+    mass: 0.00406116
+    center_of_mass: [ 0, 0, 0.0105083 ]
+    inertia: [ 
+      4.58974e-07, 0, 0, 
+      0, 4.4305e-07, -3.56348e-25, 
+      0, -3.56348e-25, 1.49434e-07 ]
+  - 
+    name: "pinky_0"
+    elements: 
+      - 
+        type: Transform
+        rotation: [ -0, -0, 1, 90 ]
+        translation: [ -0, -0, -0.0856 ]
+        elements: 
+          - 
+            type: Transform
+            rotation: [ 0, 0, -1, 90 ]
+            translation: [ 0, 0, 0.0856 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.49, 0.14, 0.14 ]
+                    emissive: [ 0.21, 0.06, 0.06 ]
+                geometry: 
+                  type: Cylinder
+                  radius: 0.008
+                  height: 0.018
+    parent: Root
+    translation: [ 0, 0, 0.0856 ]
+    rotation: [ 0, 0, -1, 90 ]
+    joint_name: pinky_0
+    joint_type: revolute
+    joint_axis: [ 0, 1, 0 ]
+    joint_id: 16
+    joint_range: [ -30, 60 ]
+    joint_displacement: 15
+    mass: 0.00144765
+    center_of_mass: [ 0, 0, 0 ]
+    inertia: [ 
+      6.22488e-08, 0, 0, 
+      0, 4.63247e-08, 0, 
+      0, 0, 6.22488e-08 ]
+  - 
+    name: "pinky_1"
+    elements: 
+      - 
+        type: Transform
+        translation: [ -0, -0, -0.0856 ]
+        elements: 
+          - 
+            type: Transform
+            translation: [ 0, 0, 0.0856 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.49, 0.14, 0.14 ]
+                    emissive: [ 0.21, 0.06, 0.06 ]
+                geometry: 
+                  type: Cylinder
+                  radius: 0.008
+                  height: 0.018
+          - 
+            type: Transform
+            rotation: [ -1, 0, 0, 90 ]
+            translation: [ 0, 0, 0.1003 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.14, 0.49, 0.14 ]
+                    emissive: [ 0.06, 0.21, 0.06 ]
+                geometry: 
+                  type: Capsule
+                  radius: 0.007
+                  height: 0.0154
+    parent: pinky_0
+    rotation: [ 0, 0, 1, 90 ]
+    joint_name: pinky_1
+    joint_type: revolute
+    joint_axis: [ 0, 1, 0 ]
+    joint_id: 17
+    joint_range: [ -15, 120 ]
+    mass: 0.00297061
+    center_of_mass: [ 0, 0, 0.00753635 ]
+    inertia: [ 
+      2.9832e-07, 0, 0, 
+      0, 2.82396e-07, -9.14794e-24, 
+      0, -9.14794e-24, 9.67453e-08 ]
+  - 
+    name: "pinky_2"
+    elements: 
+      - 
+        type: Transform
+        translation: [ -0, -0, -0.115 ]
+        elements: 
+          - 
+            type: Transform
+            translation: [ 0, 0, 0.115 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.49, 0.14, 0.14 ]
+                    emissive: [ 0.21, 0.06, 0.06 ]
+                geometry: 
+                  type: Cylinder
+                  radius: 0.008
+                  height: 0.018
+          - 
+            type: Transform
+            rotation: [ -1, 0, 0, 90 ]
+            translation: [ 0, 0, 0.12455 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.14, 0.49, 0.14 ]
+                    emissive: [ 0.06, 0.21, 0.06 ]
+                geometry: 
+                  type: Capsule
+                  radius: 0.007
+                  height: 0.0051
+    parent: pinky_1
+    translation: [ 0, 0, 0.0294 ]
+    joint_name: pinky_2
+    joint_type: revolute
+    joint_axis: [ 0, 1, 0 ]
+    joint_id: 18
+    joint_range: [ -15, 120 ]
+    mass: 0.00233638
+    center_of_mass: [ 0, 0, 0.00363272 ]
+    inertia: [ 
+      1.32e-07, 0, 0, 
+      0, 1.16076e-07, -1.26733e-25, 
+      0, -1.26733e-25, 8.12068e-08 ]
+  - 
+    name: "pinky_3"
+    elements: 
+      - 
+        type: Transform
+        translation: [ -0, -0, -0.1341 ]
+        elements: 
+          - 
+            type: Transform
+            translation: [ 0, 0, 0.1341 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.49, 0.14, 0.14 ]
+                    emissive: [ 0.21, 0.06, 0.06 ]
+                geometry: 
+                  type: Cylinder
+                  radius: 0.008
+                  height: 0.018
+          - 
+            type: Transform
+            rotation: [ -1, 0, 0, 90 ]
+            translation: [ 0, 0, 0.1429 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.14, 0.49, 0.14 ]
+                    emissive: [ 0.06, 0.21, 0.06 ]
+                geometry: 
+                  type: Capsule
+                  radius: 0.007
+                  height: 0.0036
+          - 
+            type: Transform
+            translation: [ 0, 0, 0.1517 ]
+            elements: 
+              - 
+                type: Shape
+                appearance: 
+                  material: 
+                    diffuse: [ 0.49, 0.14, 0.14 ]
+                    emissive: [ 0.21, 0.06, 0.06 ]
+                geometry: 
+                  type: Sphere
+                  radius: 0.01
+    parent: pinky_2
+    translation: [ 0, 0, 0.0191 ]
+    joint_name: pinky_3
+    joint_type: revolute
+    joint_axis: [ 0, 1, 0 ]
+    joint_id: 19
+    joint_range: [ -15, 120 ]
+    mass: 0.00391953
+    center_of_mass: [ 0, 0, 0.00931161 ]
+    inertia: [ 
+      3.86182e-07, 0, 0, 
+      0, 3.70258e-07, 1.36342e-25, 
+      0, 1.36342e-25, 1.45965e-07 ]
