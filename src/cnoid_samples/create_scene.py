@@ -92,7 +92,7 @@ def makeImages(lst, robot=None, rate=10, prefix='image'):
     cntr = 0
     prev_data_ = readData(lst[0][0])
     mode_ = robot.setMode()
-    robot.setMode(-1)## revet mode
+    robot.setMode(-1)## no update  mode
     for fname, tm in lst[1:]:
         data_ = readData(fname)
         size = int(tm * rate)
@@ -115,6 +115,40 @@ def makeImages(lst, robot=None, rate=10, prefix='image'):
             ib.saveImageOfScene(fname)
         prev_data_ = data_
     robot.setMode(mode_)## revert mode
+
+import time
+def moveRobot(lst, robot=None, rate=10, moveCamera=False):
+    if robot is None:
+        robot = eval('robot')
+    cntr = 0
+    prev_data_ = readData(lst[0][0])
+    mode_ = robot.setMode()
+    # robot.setMode(-1)## no update mode
+    for fname, tm in lst[1:]:
+        data_ = readData(fname)
+        size = int(tm * rate)
+        # d0 = makeListInterpolation(prev_data_[0], data_[0], size=size)
+        # d1 = makeListInterpolation(prev_data_[1], data_[1], size=size)
+        d0 = makeCoordsInterpolation(ru.make_coordinates(prev_data_[3]),
+                                     ru.make_coordinates(data_[3]), size=size)
+        d1 = makeCoordsInterpolation(ru.make_coordinates(prev_data_[4]),
+                                     ru.make_coordinates(data_[4]), size=size)
+        d2 = makeVectorInterpolation(prev_data_[2], data_[2], size=size)
+        ##
+        for l0, l1, v0 in zip(d0, d1, d2):
+            #setCameraPosition2D(l0*)
+            #setRobotPosition2D(l0*, robot=robot)
+            if moveCamera:
+                ib.setCameraCoords(l0, update=False)
+            robot.rootCoords(l1)
+            robot.angleVector(v0)
+            robot.flush(updateGui=True)
+            #fname='{}{:0=6}.png'.format(prefix, cntr)
+            #cntr += 1
+            #ib.saveImageOfScene(fname)
+            time.sleep(1.0/rate)
+        prev_data_ = data_
+    #robot.setMode(mode_)## revert mode
 
 ## set size of Image
 # ib.currentSceneWidget().setScreenSize(800,600)
