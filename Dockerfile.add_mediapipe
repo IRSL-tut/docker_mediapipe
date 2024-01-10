@@ -7,8 +7,16 @@ RUN python3 -m pip install mediapipe
 # RUN sed -i 's@archive.ubuntu.com@ftp.jaist.ac.jp/pub/Linux@g' /etc/apt/sources.list
 # RUN sed -i 's@ftp.jaist.ac.jp/pub/Linux@archive.ubuntu.com@g' /etc/apt/sources.list
 
+## for ros2-galatic
+RUN curl -sSL https://raw.githubusercontent.com/ros/rosdistro/master/ros.key -o /usr/share/keyrings/ros-archive-keyring.gpg
+RUN echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/ros-archive-keyring.gpg] http://packages.ros.org/ros2/ubuntu $(. /etc/os-release && echo $UBUNTU_CODENAME) main" | sudo tee /etc/apt/sources.list.d/ros2.list > /dev/null
+## ROS Cross-Distribution Communication
+## export RMW_IMPLEMENTATION=rmw_fastrtps_cpp
+## ros2 run ...
+
 RUN apt update -q -qq && \
     apt install -q -qq -y python3-tk v4l-utils qv4l2 ros-noetic-cv-camera ros-noetic-camera-calibration && \
+    apt install -q -qq -y ros-galactic-ros-core ros-galactic-rmw-fastrtps-cpp && \
     apt clean && \
     rm -rf /var/lib/apt/lists/
 
