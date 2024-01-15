@@ -5,6 +5,8 @@
 # sudo apt install ros-galactic-ros-core
 # sudo apt install ros-galactic-rmw-fastrtps-cpp
 
+# ROS_DOMAIN_ID=31 RMW_IMPLEMENTATION=rmw_fastrtps_cpp python3 ros2_publish.py
+
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
@@ -16,21 +18,16 @@ from std_msgs.msg import String
 #action_str.data = 'key'
 
 ### ROS2 version
-class action_trriger(Node):
-   def __init__(self):
-       super().__init__('action_trriger')
-       self.ros_init()
-   def __init__(self,robot_ip_addr,host_ip_addr):
-       super().__init__('action_trriger')
-       self.ros_init()
-   def ros_init(self, **kwargs):
+class action_trigger(Node):
+   def __init__(self, **kwargs):
        rclpy.init(args=None, **kwargs)
+       super().__init__('action_trriger')
        # rospy.init_node('action_trriger') # ノードの生成
        # self.pub = rospy.Publisher('action', String, queue_size=10) # chatterという名前のTopicを生成し型やらを定義
        self.publisher_ = self.create_publisher(String, 'action', 10)
        #self.rate = rospy.Rate(100) # 10Hzで動かすrateというクラスを生成
        print("Conection started...")
-   def trriger(self, key):
+   def trigger(self, key):
        ##
        # action_str = String() # Stringというクラスで送信するメッセージ、"hello_str"を生成
        # timestamp = rospy.get_time()
