@@ -9,16 +9,13 @@ import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
 
-rclpy.init(args=None)
-node=Node('hogehoge')
-
-node.publisher_ = node.create_publisher(String, 'action', 10)
-
-action_str = String()
-action_str.data = 'key'
+#rclpy.init(args=None)
+#node=Node('hogehoge')
+#node.publisher_ = node.create_publisher(String, 'action', 10)
+#action_str = String()
+#action_str.data = 'key'
 
 ### ROS2 version
-
 class action_trriger(Node):
    def __init__(self):
        super().__init__('action_trriger')
@@ -26,13 +23,14 @@ class action_trriger(Node):
    def __init__(self,robot_ip_addr,host_ip_addr):
        super().__init__('action_trriger')
        self.ros_init()
-   def ros_init(self):
+   def ros_init(self, **kwargs):
+       rclpy.init(args=None, **kwargs)
        # rospy.init_node('action_trriger') # ノードの生成
        # self.pub = rospy.Publisher('action', String, queue_size=10) # chatterという名前のTopicを生成し型やらを定義
        self.publisher_ = self.create_publisher(String, 'action', 10)
        #self.rate = rospy.Rate(100) # 10Hzで動かすrateというクラスを生成
        print("Conection started...")
-   def trriger(self,key):
+   def trriger(self, key):
        ##
        # action_str = String() # Stringというクラスで送信するメッセージ、"hello_str"を生成
        # timestamp = rospy.get_time()
@@ -43,3 +41,4 @@ class action_trriger(Node):
        ##
        action_str = String() # Stringというクラスで送信するメッセージ、"hello_str"を生成
        action_str.data = key # 内容の書き込み
+       self.publisher_.publish(action_str)

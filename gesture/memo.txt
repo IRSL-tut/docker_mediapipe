@@ -1,0 +1,28 @@
+#
+source ~/sandbox/metaverse_ws/install/setup.bash
+
+#
+LANG=C ros2 run choreonoid_ros2 choreonoid --project /home/irsl/sandbox/metaverse_ws/src/choreonoid_ros2/house_vr.conid --python /home/irsl/src/docker_mediapipe/gesture/ros2_sub.py
+
+
+##### old
+##
+cd ~/sandbox/choreonoid_ws/src/choreonoid_ros2
+ros2 run choreonoid_ros2 choreonoid assembler.cnoid --assembler /home/irsl/src/robot_assembler_config_IRSL/irsl_assembler_config.yaml
+
+##
+source ~/sandbox/metaverse_ws/install/setup.bash 
+LANG=C ros2 run choreonoid_ros2 choreonoid --project ~/sandbox/metaverse_ws/src/choreonoid_ros2/house_vr.conid
+
+LANG=C ros2 run choreonoid_ros2 choreonoid --project ~/sandbox/metaverse_ws/src/choreonoid_ros2/house_vr.conid
+
+LANG=C ros2 run choreonoid_ros2 choreonoid --project ~/sandbox/metaverse_ws/src/choreonoid_ros2/house_vr.conid --python /home/irsl/ros2_sub.py
+
+python3
+# DISPLAY=:1 jupyter console --kernel=ros2
+
+exec(open('/home/irsl/sandbox/metaverse_ws/install/share/irsl_choreonoid/sample/irsl_import.py').read())
+
+fname = '/home/irsl/src/docker_mediapipe/models/JVRC-1/main.wrl'
+rb = ib.loadRobotItem(fname, world=False) ## in choreonoid GUI
+robot = RobotModel(rb)
